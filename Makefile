@@ -3,7 +3,7 @@ SERVER_NAME = server
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -I. -c
+CFLAGS = -g -fsanitize=address
 
 CSRC =	d_client/client.c \
 
@@ -15,23 +15,20 @@ SOBJ = $(SSRC:%.c=%.o)
 all: libft $(CLIENT_NAME) $(SERVER_NAME)
 
 $(CLIENT_NAME): $(COBJ)
-	ar rcs $(CLIENT_NAME) $(COBJ)
+	$(CC) -o $@ $(COBJ) -L./shared/libft -lft -I./
 $(SERVER_NAME): $(SOBJ)
-	ar rcs $(SERVER_NAME) $(SOBJ)
+	$(CC) -o $@ $(SOBJ) -L./shared/libft -lft -I./
 
-$ (COBJ): $(CSRC)
-	$(CC) $(CFLAGS) $(CSRC) -Llibft
-$ (SOBJ): $(SSRC)
-	$(CC) $(CFLAGS) $(SSRC) -Llibft
+$(%.o): $(%.c)
+	$(CC) -o $@ -c $^
 
 clean:
 	rm -f $(COBJ) $(SOBJ)
 
-fclean:
+fclean: clean
 	rm -f $(SERVER_NAME) $(CLIENT_NAME)
 
-re:
-	fclean all
+re: fclean all
 
 libft:
 	make -C shared/libft/
