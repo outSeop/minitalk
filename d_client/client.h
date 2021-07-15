@@ -3,5 +3,6 @@
 
 #include <unistd.h>
 #include <signal.h>
+#include "../shared/libft/libft.h"
 
 #endif

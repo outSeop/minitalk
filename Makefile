@@ -3,7 +3,7 @@ SERVER_NAME = server
 
 CC = gcc
 
-CFLAGS = -g -fsanitize=address
+CFLAGS = -Wall
 
 CSRC =	d_client/client.c \
 
