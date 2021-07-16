@@ -32,5 +32,7 @@ re: fclean all
 
 libft:
 	make -C shared/libft/
+reft:
+	make re -C shared/libft/
 
 .PHONY: all clean fclean re libft

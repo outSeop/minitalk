@@ -1,6 +1,10 @@
 #include "client.h"
 
-int		main()
+int		main(int argc, char *argv[])
 {
-	write(1, "hello\n", 6);
+	int	pid;
+	char	*messege;
+
+	pid = ft_atoi(argv[1]);
+	messege = argv[2]
 }
