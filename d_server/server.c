@@ -5,6 +5,11 @@ int			main()
 	print_pid(getpid());
 }
 
+void		f(int signum)
+{
+	printf("%d\n", signum);
+}
+
 void		print_pid(int pid)
 {
 	int		pid_length;
