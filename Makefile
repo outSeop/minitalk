@@ -3,7 +3,7 @@ SERVER_NAME = server
 
 CC = gcc
 
-CFLAGS = -Wall
+CFLAGS =
 
 CSRC =	d_client/client.c \
 
