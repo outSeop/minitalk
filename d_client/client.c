@@ -33,11 +33,9 @@ void			send_char(int server_pid, char chr)
 	i = 0;
 	while (i < 8)
 	{
-		bit = chr & base_bit;
-		kill(server_pid, sigusr[bit / 128]);
-		printf("== %d ==\n", bit);
+		bit = (chr & base_bit) / base_bit;
+		kill(server_pid, sigusr[bit]);
 		chr <<= 1;
 		i++;
-		sleep(1);
 	}
 }

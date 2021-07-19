@@ -9,5 +9,7 @@
 
 void		print_pid(int pid);
 void		f(int signum);
+void		receive(int signum);
+int			signum_to_bit(int signum);
 
 #endif
