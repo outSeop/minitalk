@@ -1,13 +1,20 @@
 #include "server.h"
 
+int		i;
 int			main()
 {
+
 	print_pid(getpid());
+	signal(SIGUSR1, f);
+	signal(SIGUSR2, f);
+	while(1)
+	{
+	}
 }
 
 void		f(int signum)
 {
-	printf("%d\n", signum);
+	printf("f = %d\n", signum);
 }
 
 void		print_pid(int pid)
