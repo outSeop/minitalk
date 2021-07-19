@@ -3,18 +3,18 @@
 int		i;
 int			main()
 {
-	struct sigaction receive;
+	struct sigaction act;
 
 	print_pid(getpid());
-	receive.sa_flags = 	SA_SIGINFO;
-	receive.sa_sigaction = sa_handler;
-	sigaction(SIGUSR1, &receive, 0);
-	sigaction(SIGUSR2, &receive, 0);
+	act.sa_flags = 	SA_SIGINFO;
+	act.sa_sigaction = receive;
+	sigaction(SIGUSR1, &act, 0);
+	sigaction(SIGUSR2, &act, 0);
 	while(1)
 		pause();
 }
 
-void		receive(int signum)
+void		receive(int signum, siginfo_t *siginfo, void *unused)
 {
 	int		bit;
 
