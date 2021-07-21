@@ -17,9 +17,12 @@ int			main()
 void		receive(int signum, siginfo_t *siginfo, void *unused)
 {
 	int		bit;
+	int		client_pid;
 
+	client_pid = siginfo->si_pid;
 	bit = signum_to_bit(signum);
 	f(bit);
+	kill(client_pid, SIGUSR1);
 }
 int			signum_to_bit(int signum)
 {
