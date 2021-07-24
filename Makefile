@@ -6,6 +6,7 @@ CC = gcc
 CFLAGS =
 
 CSRC =	d_client/client.c \
+	d_client/error.c \
 
 SSRC =	d_server/server.c \
 

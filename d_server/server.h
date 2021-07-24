@@ -8,7 +8,7 @@
 #include "../shared/libft/libft.h"
 
 void		print_pid(int pid);
-void		f(int signum);
+int			f(int signum, int client_pid);
 void		receive(int signum, siginfo_t *siginfo, void *unused);
 int			signum_to_bit(int signum);
 

@@ -17,13 +17,15 @@ int			main()
 void		receive(int signum, siginfo_t *siginfo, void *unused)
 {
 	int		bit;
-	int		client_pid;
+	static int	client_pid = 0;
 
-	client_pid = siginfo->si_pid;
+	if (client_pid == 0)
+		client_pid = siginfo->si_pid;
 	bit = signum_to_bit(signum);
-	f(bit);
-	kill(client_pid, SIGUSR1);
+	if(f(bit, client_pid))
+		client_pid = 0;
 }
+
 int			signum_to_bit(int signum)
 {
 	if (signum == SIGUSR1)
@@ -32,7 +34,7 @@ int			signum_to_bit(int signum)
 		return (1);
 }
 
-void		f(int bit)
+int			f(int bit, int client_pid)
 {
 	static char c = 0;
 	static int	cnt = 0;
@@ -41,11 +43,18 @@ void		f(int bit)
 	cnt++;
 	if (cnt == 8)
 	{
+		if (c == '\0')
+		{
+			c = 0;
+			cnt = 0;
+			return (!kill(client_pid, SIGUSR1));
+		}
 		write(1, &c, 1);
 		c = 0;
 		cnt = 0;
 	}
 	c <<= 1;
+	return (kill(client_pid, SIGUSR1));
 }
 
 void		print_pid(int pid)

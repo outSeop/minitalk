@@ -7,6 +7,7 @@ int				main(int argc, char *argv[])
 	act.sa_flags = 	SA_SIGINFO;
 	act.sa_sigaction = catcha;
 
+	init_err_check(argc, argv);
 	server_pid = ft_atoi(argv[1]);
 	sigaction(SIGUSR1, &act, 0);
 	send_str(server_pid, argv[2]);
@@ -19,40 +20,40 @@ void			send_str(int server_pid, char *str)
 	i = 0;
 	while (str[i])
 	{
-		send_char(server_pid, str[i]);
+		send_char(server_pid, str[i], 1);
 		i++;
 	}
+	send_char(server_pid, str[i], 1);
 }
 
 void		catcha(int signum, siginfo_t *siginfo, void *unused)
 {
-	int i = 0;
-	i++;
+	send_char(0, 0, 0);
 }
 
-void			catc(int signum)
-{
-
-	printf("catch\n");
-}
-
-void			send_char(int server_pid, char chr)
+void			send_char(int server_pid, char chr, int flag)
 {
 	int			i;
 	int			bit;
-	int			base_bit;
 	int			sigusr[2];
-	int			chk;
+	static	int	stop = 0;
 
-
-	base_bit = 128;
+	if (!flag)
+	{
+		stop = 1;
+		return ;
+	}
 	sigusr[0] = SIGUSR1;
 	sigusr[1] = SIGUSR2;
 	i = 0;
 	while (i < 8)
 	{
-		bit = (chr & base_bit) / base_bit;
-		kill(server_pid, sigusr[bit]);
+		bit = (chr & BASE_BIT) / BASE_BIT;
+		if (kill(server_pid, sigusr[bit]) == -1)
+			print_error("ERROR - There is wrong PID\n");
+		while (!stop)
+			;
+		stop = 0;
 		chr <<= 1;
 		i++;
 	}
