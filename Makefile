@@ -5,10 +5,10 @@ CC = gcc
 
 CFLAGS =
 
-CSRC =	d_client/client.c \
-	d_client/error.c \
+CSRC =	clients/client.c \
+		clients/error.c \
 
-SSRC =	d_server/server.c \
+SSRC =	servers/server.c \
 
 COBJ = $(CSRC:%.c=%.o)
 SOBJ = $(SSRC:%.c=%.o)
