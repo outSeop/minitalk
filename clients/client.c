@@ -28,6 +28,9 @@ void			send_str(int server_pid, char *str)
 
 void		catcha(int signum, siginfo_t *siginfo, void *unused)
 {
+	(void)signum;
+	(void)siginfo;
+	(void)unused;
 	send_char(0, 0, 0);
 }
 

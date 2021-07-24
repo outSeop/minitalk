@@ -3,7 +3,7 @@ SERVER_NAME = server
 
 CC = gcc
 
-CFLAGS =
+CFLAGS = -Wall -Werror -Wextra
 
 CSRC =	clients/client.c \
 		clients/error.c \

@@ -1,6 +1,5 @@
 #include "server.h"
 
-int		i;
 int			main()
 {
 	struct sigaction act;
@@ -19,6 +18,7 @@ void		receive(int signum, siginfo_t *siginfo, void *unused)
 	int		bit;
 	static int	client_pid = 0;
 
+	(void)unused;
 	if (client_pid == 0)
 		client_pid = siginfo->si_pid;
 	bit = signum_to_bit(signum);
