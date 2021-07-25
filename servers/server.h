@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: inssong <inssong@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/25 12:36:49 by inssong           #+#    #+#             */
+/*   Updated: 2021/07/25 12:37:16 by inssong          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SERVER_H
 # define SERVER_H
 
-#include <stdio.h>
+# include <stdio.h>
 
-#include <unistd.h>
-#include <signal.h>
-#include "../shared/libft/libft.h"
+# include <unistd.h>
+# include <signal.h>
+# include "../shared/libft/libft.h"
 
 void		print_pid(int pid);
 int			f(int signum, int client_pid);

@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: inssong <inssong@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/25 12:31:27 by inssong           #+#    #+#             */
+/*   Updated: 2021/07/25 12:35:06 by inssong          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "client.h"
 
 int				main(int argc, char *argv[])
 {
-	int			server_pid;
-	struct sigaction act;
-	act.sa_flags = 	SA_SIGINFO;
-	act.sa_sigaction = catcha;
+	int					server_pid;
+	struct sigaction	act;
 
+	act.sa_flags = SA_SIGINFO;
+	act.sa_sigaction = catcha;
 	init_err_check(argc, argv);
 	server_pid = ft_atoi(argv[1]);
 	sigaction(SIGUSR1, &act, 0);
@@ -26,7 +38,7 @@ void			send_str(int server_pid, char *str)
 	send_char(server_pid, str[i], 1);
 }
 
-void		catcha(int signum, siginfo_t *siginfo, void *unused)
+void			catcha(int signum, siginfo_t *siginfo, void *unused)
 {
 	(void)signum;
 	(void)siginfo;

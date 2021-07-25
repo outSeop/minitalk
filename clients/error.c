@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: inssong <inssong@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/25 12:35:21 by inssong           #+#    #+#             */
+/*   Updated: 2021/07/25 12:35:40 by inssong          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "client.h"
 
 void			init_err_check(int argc, char *argv[])
@@ -22,7 +34,6 @@ void			argv_err_check(char *argv[])
 		print_error("ERROR - PID is out of range\n");
 	if (ft_strlen(argv[2]) == 0)
 		print_error("ERROR - String dose not exist\n");
-
 }
 
 int				isdigits(char *str)

@@ -1,28 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: inssong <inssong@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/25 12:37:43 by inssong           #+#    #+#             */
+/*   Updated: 2021/07/25 12:39:23 by inssong          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "server.h"
 
-int			main()
+int			main(void)
 {
 	struct sigaction act;
 
 	print_pid(getpid());
-	act.sa_flags = 	SA_SIGINFO;
+	act.sa_flags = SA_SIGINFO;
 	act.sa_sigaction = receive;
 	sigaction(SIGUSR1, &act, 0);
 	sigaction(SIGUSR2, &act, 0);
-	while(1)
+	while (1)
 		pause();
 }
 
 void		receive(int signum, siginfo_t *siginfo, void *unused)
 {
-	int		bit;
+	int			bit;
 	static int	client_pid = 0;
 
 	(void)unused;
 	if (client_pid == 0)
 		client_pid = siginfo->si_pid;
 	bit = signum_to_bit(signum);
-	if(f(bit, client_pid))
+	if (f(bit, client_pid))
 		client_pid = 0;
 }
 
