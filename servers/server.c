@@ -34,7 +34,7 @@ void		receive(int signum, siginfo_t *siginfo, void *unused)
 	if (client_pid == 0)
 		client_pid = siginfo->si_pid;
 	bit = signum_to_bit(signum);
-	if (f(bit, client_pid))
+	if (send_bit(bit, client_pid))
 		client_pid = 0;
 }
 
@@ -46,7 +46,7 @@ int			signum_to_bit(int signum)
 		return (1);
 }
 
-int			f(int bit, int client_pid)
+int			send_bit(int bit, int client_pid)
 {
 	static char c = 0;
 	static int	cnt = 0;

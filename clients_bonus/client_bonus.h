@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.h                                           :+:      :+:    :+:   */
+/*   client.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inssong <inssong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/25 12:36:49 by inssong           #+#    #+#             */
-/*   Updated: 2021/07/25 12:37:16 by inssong          ###   ########.fr       */
+/*   Created: 2021/07/25 12:30:00 by inssong           #+#    #+#             */
+/*   Updated: 2021/07/25 12:32:52 by inssong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERVER_BONUS_H
-# define SERVER_BONUS_H
+#ifndef CLIENT_BONUS_H
+# define CLIENT_BONUS_H
 
 # include <stdio.h>
 
@@ -19,12 +19,22 @@
 # include <signal.h>
 # include "../shared/libft/libft.h"
 
+# define BASE_BIT 128
+
 /*
-** server.c
+** client.c
 */
-void		print_pid(int pid);
-int			send_bit(int signum, int client_pid);
-void		receive(int signum, siginfo_t *siginfo, void *unused);
-int			signum_to_bit(int signum);
+void			send_str(int server_pid, char *str);
+void			send_char(int server_pid, char chr, int flag);
+void			signal_handler(int signum, siginfo_t *siginfo, void *unused);
+
+/*
+** error.c
+*/
+int				isdigits(char *str);
+void			init_err_check(int argc, char *argv[]);
+void			argc_err_check(int argc);
+void			argv_err_check(char *argv[]);
+void			print_error(char *error);
 
 #endif

@@ -26,7 +26,7 @@
 */
 void			send_str(int server_pid, char *str);
 void			send_char(int server_pid, char chr, int flag);
-void			catcha(int signum, siginfo_t *siginfo, void *unused);
+void			signal_handler(int signum, siginfo_t *siginfo, void *unused);
 
 /*
 ** error.c

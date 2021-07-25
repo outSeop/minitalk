@@ -19,8 +19,11 @@
 # include <signal.h>
 # include "../shared/libft/libft.h"
 
+/*
+** server.c
+*/
 void		print_pid(int pid);
-int			f(int signum, int client_pid);
+int			send_bit(int signum, int client_pid);
 void		receive(int signum, siginfo_t *siginfo, void *unused);
 int			signum_to_bit(int signum);
 

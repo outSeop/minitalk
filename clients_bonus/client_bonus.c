@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "client.h"
+#include "client_bonus.h"
 
 int				main(int argc, char *argv[])
 {
